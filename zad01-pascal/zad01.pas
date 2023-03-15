@@ -2,8 +2,9 @@
 program zad01;
 
 var
-  randomNumbers: array[0..49] of integer;
-  testArray: array[0..4] of Integer = ( 5, 4, 3, 2, 1);
+  randomNumbers: array of integer;
+  testArray: array[0..7] of Integer = ( 4, 2, 6, 2, 1, 7, 8, 4);
+
 
 // procedura wypisująca elementy podanej tablicy
 procedure writeArray(var testArray: Array of Integer);
@@ -18,20 +19,28 @@ begin
 end;
 
 
-// procedura generująca n losowych liczb w przedziale od 
-procedure generateNumbers(var numbersArray: Array of Integer);
+// procedura generująca n losowych liczb w przedziale od do
+procedure generateNumbers(start_pos, end_pos, number : Integer);
 var i : Integer;
 
 begin
   Randomize;
+  SetLength(randomNumbers,number);
 
-  for i := 0 to 49 do
+  if (start_pos < 0) or (end_pos < 0) or (start_pos > end_pos) or (number < 0) then
   begin
-    numbersArray[i] := Random(101);
+    WriteLn('ERROR: inapropriate arguments');
+    exit;
+  end;
+
+  for i := 0 to number-1 do
+  begin
+    randomNumbers[i] := Random(end_pos-start_pos+1) + start_pos;
   end;
 end;
 
 
+// procedura sortująca liczby za pomocą sortowania bąbelkowego
 procedure bubbleSort(var numbersArray: Array of Integer);
 var i, j, temp: Integer;
 
@@ -52,11 +61,19 @@ end;
 
 
 begin
-  generateNumbers(randomNumbers);
-  WriteLn('Generated array:');
+  generateNumbers(0 ,100, 50);
+  WriteLn('Generated array of 50 random elements from 0 to 100:');
   writeArray(randomNumbers);
 
   bubbleSort(randomNumbers);
-  WriteLn('Array after Bubble Sort:');
+  WriteLn('randomNumbers array after Bubble Sort:');
   writeArray(randomNumbers);
+
+  generateNumbers(20 ,40, 10);
+  WriteLn('Generated array of 10 random elements from 20 to 40:');
+  writeArray(randomNumbers);
+
+  bubbleSort(testArray);
+  WriteLn('Test array after Bubble Sort:');
+  writeArray(testArray);
 end.
