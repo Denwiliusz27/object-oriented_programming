@@ -6,6 +6,4 @@ class Product(
         var value: Int,
         var amount: Int,
         val description: String
-) {
-
-}
+) {}
