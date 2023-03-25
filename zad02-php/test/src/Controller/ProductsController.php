@@ -81,7 +81,7 @@ class ProductsController extends AbstractController
             $tmpProduct->setAmount($request->get('amount'));
             $tmpProduct->setDescription($request->get('description'));
 
-//            $productRepository->save( $tmpProduct, true);
+            $productRepository->save( $tmpProduct, true);
 
             $data = [
                 'id' => $tmpProduct->getId(),
