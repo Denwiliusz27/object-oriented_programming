@@ -35,12 +35,14 @@ class ProductsController extends AbstractController
     #[Route('/add', methods: ['POST'])]
     public function new(Request $request, ProductRepository $productRepository): Response
     {
+        $parameters = json_decode($request->getContent(), true);
+
         $product = new Product();
-        $product->setName($request->get('name'));
-        $product->setAuthor($request->get('author'));
-        $product->setPrice($request->get('price'));
-        $product->setAmount($request->get('amount'));
-        $product->setDescription($request->get('description'));
+        $product->setName($parameters['name']);
+        $product->setAuthor($parameters['author']); //$request->get('author'));
+        $product->setPrice($parameters['price']);//$request->get('price'));
+        $product->setAmount($parameters['amount']); //$request->get('amount'));
+        $product->setDescription($parameters['description']); //$request->get('description'));
 
         $productRepository->save($product, true);
         return $this->json('Created new product with id ' . $product->getId());
@@ -70,16 +72,17 @@ class ProductsController extends AbstractController
     #[Route('/update/{id}', methods: ['PUT'])]
     public function edit(Request $request, ProductRepository $productRepository, int $id): Response
     {
+        $parameters = json_decode($request->getContent(), true);
         $tmpProduct = $productRepository->find($id);
 
         if (!$tmpProduct) {
             return $this->json('No product found with id' . $id, 404);
         } else {
-            $tmpProduct->setName($request->get('name'));
-            $tmpProduct->setAuthor($request->get('author'));
-            $tmpProduct->setPrice($request->get('price'));
-            $tmpProduct->setAmount($request->get('amount'));
-            $tmpProduct->setDescription($request->get('description'));
+            $tmpProduct->setName($parameters['name']);
+            $tmpProduct->setAuthor($parameters['author']);
+            $tmpProduct->setPrice($parameters['price']);
+            $tmpProduct->setAmount($parameters['amount']);
+            $tmpProduct->setDescription($parameters['description']);
 
             $productRepository->save( $tmpProduct, true);
 
