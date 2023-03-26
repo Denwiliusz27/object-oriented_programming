@@ -12,9 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 // product/getAll - get all products
 // product/add - add new product
-// product/{id}/get - get product with special id
-// product/{id}/update - updates product with special id
-// product/{id}/delete - deletes product with special id
+// product/get/{id} - get product with special id
+// product/update/{id} - updates product with special id
+// product/delete/{id} - deletes product with special id
 
 
 #[Route('/product')]

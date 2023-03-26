@@ -9,6 +9,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+// products/getAll - get all products
+// products/add - add new product
+// products/get/{id} - get product with special id
+// products/update/{id} - updates product with special id
+// products/delete/{id} - deletes product with special id
+
 #[Route('/products')]
 class ProductsController extends AbstractController
 {
