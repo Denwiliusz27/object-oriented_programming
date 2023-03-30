@@ -45,10 +45,10 @@ class ProductsController extends AbstractController
 
         $product = new Product();
         $product->setName($parameters['name']);
-        $product->setAuthor($parameters['author']); //$request->get('author'));
-        $product->setPrice($parameters['price']);//$request->get('price'));
-        $product->setAmount($parameters['amount']); //$request->get('amount'));
-        $product->setDescription($parameters['description']); //$request->get('description'));
+        $product->setAuthor($parameters['author']);
+        $product->setPrice($parameters['price']);
+        $product->setAmount($parameters['amount']);
+        $product->setDescription($parameters['description']);
 
         $productRepository->save($product, true);
         return $this->json('Created new product with id ' . $product->getId());
@@ -116,7 +116,5 @@ class ProductsController extends AbstractController
             $productRepository->remove($product, true);
             return $this->json('Succesfully deleted a product with id ' . $id);
         }
-
-
     }
 }

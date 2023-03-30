@@ -2,83 +2,109 @@
 
 namespace App\Controller;
 
-use App\Entity\Students;
-use App\Form\StudentsType;
-use App\Repository\StudentsRepository;
+use App\Entity\Student;
+use App\Repository\StudentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-// students/getAll - get all students
-// students/add - add new student
-// students/{id}/get - get student with special id
-// students/{id}/update - updates student with special id
-// students/{id}/delete - deletes student with special id
-
 #[Route('/students')]
 class StudentsController extends AbstractController
 {
-    #[Route('/getAll', name: 'app_students_index', methods: ['GET'])]
-    public function index(StudentsRepository $studentsRepository): Response
+    #[Route('/getAll', methods: ['GET'])]
+    public function index(StudentRepository $studentRepository): Response
     {
-        return $this->render('students/index.html.twig', [
-            'students' => $studentsRepository->findAll(),
-        ]);
-    }
+        $students = $studentRepository->findAll();
+        $data = [];
 
-    #[Route('/add', name: 'app_students_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, StudentsRepository $studentsRepository): Response
-    {
-        $student = new Students();
-        $form = $this->createForm(StudentsType::class, $student);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $studentsRepository->save($student, true);
-
-            return $this->redirectToRoute('app_students_index', [], Response::HTTP_SEE_OTHER);
+        foreach ($students as $student) {
+            $data[] = [
+                'id' => $student->getId(),
+                'name' => $student->getName(),
+                'surname' => $student->getSurname(),
+                'age' => $student->getAge(),
+                'hobby' => $student->getHobby(),
+            ];
         }
 
-        return $this->renderForm('students/new.html.twig', [
-            'student' => $student,
-            'form' => $form,
-        ]);
+        return $this->json($data);
     }
 
-    #[Route('/{id}/get', name: 'app_students_show', methods: ['GET'])]
-    public function show(Students $student): Response
+    #[Route('/add', methods: ['POST'])]
+    public function new(Request $request, StudentRepository $studentRepository): Response
     {
-        return $this->render('students/show.html.twig', [
-            'student' => $student,
-        ]);
+        $parameters = json_decode($request->getContent(), true);
+
+        $student = new Student();
+        $student->setName($parameters['name']);
+        $student->setSurname($parameters['surname']);
+        $student->setAge($parameters['age']);
+        $student->setHobby($parameters['hobby']);
+
+        $studentRepository->save($student, true);
+        return $this->json('Created new student with id ' . $student->getId());
     }
 
-    #[Route('/{id}/update', name: 'app_students_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Students $student, StudentsRepository $studentsRepository): Response
+    #[Route('/get/{id}', methods: ['GET'])]
+    public function show(StudentRepository $studentRepository, int $id): Response
     {
-        $form = $this->createForm(StudentsType::class, $student);
-        $form->handleRequest($request);
+        $student = $studentRepository->find($id);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $studentsRepository->save($student, true);
+        if (!$student) {
+            return $this->json('No student with this id found');
+        } else {
+            $data = [
+                'id' => $student->getId(),
+                'name' => $student->getName(),
+                'surname' => $student->getSurname(),
+                'age' => $student->getAge(),
+                'hobby' => $student->getHobby(),
+            ];
 
-            return $this->redirectToRoute('app_students_index', [], Response::HTTP_SEE_OTHER);
+            return $this->json($data);
         }
-
-        return $this->renderForm('students/edit.html.twig', [
-            'student' => $student,
-            'form' => $form,
-        ]);
     }
 
-    #[Route('/{id}/delete', name: 'app_students_delete', methods: ['POST'])]
-    public function delete(Request $request, Students $student, StudentsRepository $studentsRepository): Response
+    #[Route('/update/{id}', methods: ['PUT'])]
+    public function edit(Request $request, StudentRepository $studentRepository, int $id): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$student->getId(), $request->request->get('_token'))) {
-            $studentsRepository->remove($student, true);
-        }
+        $parameters = json_decode($request->getContent(), true);
+        $tmpStudent = $studentRepository->find($id);
 
-        return $this->redirectToRoute('app_students_index', [], Response::HTTP_SEE_OTHER);
+        if (!$tmpStudent) {
+            return $this->json('No student found with id' . $id, 404);
+        } else {
+            $tmpStudent->setName($parameters['name']);
+            $tmpStudent->setSurname($parameters['surname']);
+            $tmpStudent->setAge($parameters['age']);
+            $tmpStudent->setHobby($parameters['hobby']);
+
+            $studentRepository->save( $tmpStudent, true);
+
+            $data = [
+                'id' => $tmpStudent->getId(),
+                'name' => $tmpStudent->getName(),
+                'surname' => $tmpStudent->getSurname(),
+                'age' => $tmpStudent->getAge(),
+                'hobby' => $tmpStudent->getHobby(),
+            ];
+
+            return $this->json($data);
+        }
     }
+
+    #[Route('/delete/{id}', methods: ['DELETE'])]
+    public function delete(StudentRepository $studentRepository, int $id): Response
+    {
+        $student = $studentRepository->find($id);
+
+        if (!$student){
+            return $this->json('No student found with id' . $id, 404);
+        } else {
+            $studentRepository->remove($student, true);
+            return $this->json('Succesfully deleted a student with id ' . $id);
+        }
+    }
+
 }
