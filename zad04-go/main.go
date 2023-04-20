@@ -32,8 +32,9 @@ func main() {
 
 	weatherCtr := controllers.NewWeatherController()
 
-	e.GET("/weather", weatherCtr.GetWeather)
+	e.GET("/weather", weatherCtr.GetWeathers)
 	e.GET("/weather/:city", weatherCtr.GetCityWeather)
+	e.GET("/weather/db/:city", weatherCtr.GetDBWeathers)
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
