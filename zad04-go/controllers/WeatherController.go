@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strconv"
 	"zad04-go/models"
+	"zad04-go/proxy"
 )
 
 type WeatherController struct {
@@ -68,7 +69,7 @@ func (ctrl *WeatherController) GetCityWeather(c echo.Context) error {
 	return c.String(http.StatusOK, "Temperature in "+city+" is "+strconv.Itoa(weathers[idx].Temperature))
 }
 
-func (ctrl *WeatherController) GetDBWeathers(c echo.Context) error {
+func (ctrl *WeatherController) GetDBWeather(c echo.Context) error {
 	city := c.Param("city")
 	var weather models.Weather
 
@@ -77,4 +78,10 @@ func (ctrl *WeatherController) GetDBWeathers(c echo.Context) error {
 	}
 
 	return c.String(http.StatusOK, "(DB) Temperature in "+weather.City+" is "+strconv.Itoa(weather.Temperature))
+}
+
+func (ctrl *WeatherController) GetApiWeather(c echo.Context) error {
+	wProxy := proxy.NewWeatherProxy()
+
+	return c.JSON(http.StatusOK, wProxy.GetCityWeather(c))
 }
