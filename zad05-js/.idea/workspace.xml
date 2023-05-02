@@ -5,16 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c2044e0-caa1-49a1-bfef-9cabbdc2624d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client-react/src/Api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client-react/src/components/Hello.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client-react/src/components/Payments.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client-react/src/components/Products.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client-react/src/models/Product.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server-Scala/play-scala-seed/app/controllers/PaymentController.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server-Scala/play-scala-seed/app/models/Payment.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server-Scala/play-scala-seed/app/models/PaymentRequest.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client-react/src/models/Payment.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../zad01-pascal/zad01.pas" beforeDir="false" afterPath="$PROJECT_DIR$/../zad01-pascal/zad01.pas" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../zad02-php/test/src/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../zad02-php/test/src/Controller/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-react/src/components/Payments.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-react/src/components/Products.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server-Scala/play-scala-seed/conf/routes" beforeDir="false" afterPath="$PROJECT_DIR$/Server-Scala/play-scala-seed/conf/routes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-React/src/components/Payments.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client-React/src/components/Payments.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-react/src/components/Products.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client-react/src/components/Products.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +87,7 @@
       <workItem from="1682438058980" duration="629000" />
       <workItem from="1682857728164" duration="8824000" />
       <workItem from="1682888591669" duration="5598000" />
-      <workItem from="1683012337516" duration="4845000" />
+      <workItem from="1683012337516" duration="10137000" />
     </task>
     <servers />
   </component>

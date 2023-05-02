@@ -12,13 +12,13 @@ function Products(){
 
     return(
         <div className="p-6 w-2/5 flex flex-col justify-items-center mx-auto">
-            <h1 className="py-3 font-bold text-center">These are my products:</h1>
+            <h1 className="py-3 font-bold text-center">Available products:</h1>
             {products.isFetching ? (
                 <p>Loading...</p>
             ) : (
                 <ul className="p-6 divide-y divide-slate-200">
                     {products.data?.map((product) => (
-                        <li className="first:pt-0 last:pb-0 py-8">
+                        <li className="first:pt-0 last:pb-0 py-3">
                             <div>
                                 <p><span className="font-bold">Name: </span>{product.name}</p>
                                 <p><span className="font-bold">Author: </span>{product.author}</p>
@@ -29,12 +29,6 @@ function Products(){
                         </li>
                     ))}
                 </ul>
-
-                // <div className="">
-                //     {products.data?.map((product) => (
-                //         <p>{product.name} + {product.author} + {product.price}</p>
-                //     ))}
-                // </div>
             )}
         </div>
     )
