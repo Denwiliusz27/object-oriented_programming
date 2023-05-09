@@ -1,0 +1,5 @@
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Denwiliusz27_object-oriented_programming&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Denwiliusz27_object-oriented_programming)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Denwiliusz27_object-oriented_programming&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=Denwiliusz27_object-oriented_programming)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Denwiliusz27_object-oriented_programming&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Denwiliusz27_object-oriented_programming)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Denwiliusz27_object-oriented_programming&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Denwiliusz27_object-oriented_programming)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Denwiliusz27_object-oriented_programming&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Denwiliusz27_object-oriented_programming)
