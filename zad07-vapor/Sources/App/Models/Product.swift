@@ -1,6 +1,12 @@
 import Fluent
 import Vapor
 
+struct ProductRequest: Content {
+    let name: String
+    let price: Double
+    let amount: Int
+}
+
 final class Product: Model, Content {
     static let schema = "products"
 

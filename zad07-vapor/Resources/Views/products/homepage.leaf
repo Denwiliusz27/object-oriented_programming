@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+</head>
+<body>
+    <div style="display: flex; flex-direction: column; align-items:center">
+        <h1>Products</h1>
+        <ul style="display: flex; flex-direction: column; align-items:center; padding: 0">
+            #for(product in products):
+                 <a href='/view/products/#(product.id)' type="button">#(product.name)</a>
+            #endfor
+        </ul>
+        <button onclick="location.href='/view/products/create'">Add new product</button>
+    </div>
+</body>
+</html>
+
+
