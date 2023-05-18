@@ -30,7 +30,7 @@ struct ProductController: RouteCollection {
         return product
     }
 
-    func delete(req: Request) async throws -> Product {//HTTPStatus {
+    func delete(req: Request) async throws -> Product {
         guard let product = try await Product.find(req.parameters.get("productID"), on: req.db) else {
             throw Abort(.notFound)
         }

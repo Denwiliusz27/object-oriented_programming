@@ -16,7 +16,6 @@ struct ProductViewController: RouteCollection {
             product.post(":productID", use: updateProduct)
         }
 
-
         products.group(":productID") { product in
             product.get(use: displayProductWithId)
             product.post("delete", use: deleteProduct)
@@ -74,7 +73,6 @@ struct ProductViewController: RouteCollection {
                      .transform(to: req.redirect(to: "/view/products"))
              }
     }
-
 
     func deleteProduct(req: Request) throws -> EventLoopFuture<Response> {
         return Product.find(req.parameters.get("productID"), on: req.db)

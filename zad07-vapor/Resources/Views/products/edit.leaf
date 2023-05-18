@@ -15,11 +15,9 @@
 
           <label for="amount">Amount:</label><br>
           <input type="number" id="amount" name="amount" value="#(product.amount)" required><br>
+
           <button type="submit">Edit</button>
         </form>
     </div>
-
-
-
 </body>
 </html>

@@ -3,7 +3,6 @@ import Fluent
 import FluentSQLiteDriver
 import Leaf
 import Vapor
-import Redis
 
 public func configure(_ app: Application) async throws {
 
